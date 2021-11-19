@@ -12,9 +12,9 @@ usage() {
 	echo ""
 	
 	echo "Examples:"
-	echo "  astro test.txt	move test.txt to trash"
-    echo "  astro *.txt	    move all .txt to files trash"
-	echo "  astro --help	Show help"
+	echo "  bin test.txt	move test.txt to trash"
+    echo "  bin *.txt	move all .txt to files trash"
+	echo "  bin --help	Show help"
 	echo ""
 	
 	echo "Report bugs to: bleemayer@gmail.com"
