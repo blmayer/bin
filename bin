@@ -1,0 +1,54 @@
+#!/bin/sh
+
+usage() {
+	echo "bin v0.1.0: Move files to a trash"
+	echo ""
+	echo "Usage: bin [glob]"
+	echo ""
+	echo "Options:"
+	echo "  -h		show this help"
+	echo "  --help	show this help"
+	echo "  --version	show version info"
+	echo ""
+	
+	echo "Examples:"
+	echo "  astro test.txt	move test.txt to trash"
+    echo "  astro *.txt	    move all .txt to files trash"
+	echo "  astro --help	Show help"
+	echo ""
+	
+	echo "Report bugs to: bleemayer@gmail.com"
+	echo "Home page: <https://www.github.com/blmayer/bin>"
+	echo "General help: <https://www.github.com/blmayer/bin>"
+}
+
+version() {
+	echo "bin 0.1.0"
+	echo "Copyright (C) 2021 Brian Mayer."
+	echo "License MIT: MIT License <https://opensource.org/licenses/MIT>"
+	echo "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,"
+	echo "EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF"
+	echo "MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT."
+	echo ""
+	echo "Written by Brian Lee Mayer."
+}
+
+args="$*"
+case "$args" in
+	'--help'* | '-h'* | '')
+		usage
+		exit
+		;;
+	'--version'*)
+		version
+		exit
+		;;
+esac
+
+[ -e "$HOME/.trash" ] || mkdir "$HOME/.trash"
+
+curdate="$(date -Isecond)"
+for fi in $*
+do
+    mv "$fi" "$HOME/.trash/$fi-$curdate"
+done
